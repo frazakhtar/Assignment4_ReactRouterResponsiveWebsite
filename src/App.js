@@ -5,6 +5,7 @@ import Layout from './Components/Layout/Layout';
 import UserInfo from './Components/UserInfo/UserInfo';
 import { ThemeProvider } from '@mui/material';
 import theme from './Theme/theme'
+import ErrorPage from './Components/404Error/ErrorPage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/user_info" element={<UserInfo />} />
-        <Route path="/*" element={<h1>This is Error 404</h1>} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
       </Layout>
       </ThemeProvider>
