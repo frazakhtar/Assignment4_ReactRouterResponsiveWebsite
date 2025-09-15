@@ -13,6 +13,7 @@ import {
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { Close } from "@mui/icons-material";
 
 const Navbar = () => {
   const [anchorNav, setAnchorNav] = useState(null);
@@ -47,7 +48,7 @@ const Navbar = () => {
           <Button color="inherit" component={Link} to="/about">
             About
           </Button>
-          <Button color="inherit">User Info</Button>
+          <Button color="inherit" component={Link} to="/user_info">User Info</Button>
         </Box>
 
         {/* This is for responsive screens */}
@@ -81,7 +82,7 @@ const Navbar = () => {
             color="inherit"
             sx={{ display: { xs: "flex", md: "none" } }}
           >
-            <MenuIcon />
+           {Boolean(anchorNav)?<Close />:<MenuIcon />} 
           </IconButton>
           <Menu
             anchorEl={anchorNav}
@@ -97,12 +98,15 @@ const Navbar = () => {
             onClose={closeMenu}
             sx={{ display: { xs: "flex", md: "none" } }}
           >
-            <MenuList sx={{m:1,p:1}} onClick={() => closeMenu()}>
+            <MenuList sx={{m:0.5,p:0.5}} onClick={() => closeMenu()}>
               <MenuItem component={Link} to={"/"}>
                 Home
               </MenuItem>
               <MenuItem component={Link} to={"/about"}>
                 About
+              </MenuItem>
+              <MenuItem component={Link} to={"/user_info"}>
+                User Info
               </MenuItem>
             </MenuList>
           </Menu>
