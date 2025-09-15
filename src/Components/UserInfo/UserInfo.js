@@ -9,7 +9,6 @@ import {
   Button,
   Paper,
   Divider,
-  CircularProgress
 } from '@mui/material';
 import { Edit as EditIcon, Save as SaveIcon } from '@mui/icons-material';
 
@@ -19,9 +18,8 @@ const UserInfoPage = () => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    // fetch user info from API
+   
     async function fetchUser() {
-      // simulate fetch
       const res = await fakeApiGetUser();
      setUser(res);
      setFormData(res);
@@ -34,8 +32,6 @@ const UserInfoPage = () => {
   };
 
   const handleSave = async () => {
-    // validate...
-    // send update
     await fakeApiUpdateUser(formData);
     setUser(formData);
     setIsEditing(false);
@@ -48,38 +44,27 @@ const UserInfoPage = () => {
     }));
   };
 
-  if (!user) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
-
   return (
-    <Container maxWidth="sm" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="sm" sx={{ mt: 2.5, mb: 2.5 }}>
       <Paper elevation={3} sx={{ p: 3 }}>
-        {/* Profile Header */}
-        <Box sx={{ display: 'flex', alignItems: 'center', flexDirection:'column' }}>
+         <Box sx={{ display: 'flex', alignItems: 'center', flexDirection:'column' }}>
           <Avatar
             sx={{ width: 100, height: 100, mb:2}}
-            src={user.avatarUrl}
+            src={user?.avatarUrl}
           >
-            {user.name ? user.name[0] : ''}
+            {user?.name ? user?.name[0] : ''}
           </Avatar>
           <Box sx={{display:'flex',alignItems:'center',justifyContent:'center', flexDirection:'column'}}>
-            <Typography variant="h5">{user.name}</Typography>
+            <Typography variant="h5">{user?.name}</Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              {user.role || 'User'}
+              {user?.role || 'User'}
             </Typography>
           </Box>
-          
         </Box>
-
+       
         <Divider sx={{ my: 3 }} />
 
-        {/* Profile Details Form / Display */}
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{display:"flex", alignItems:"center", justifyContent:"center"}}>
           <Grid item xs={12} sm={6}>
             <TextField
               label="Full Name"
@@ -153,7 +138,6 @@ const UserInfoPage = () => {
   );
 };
 
-// Example fake API
 async function fakeApiGetUser() {
   return {
     name: 'John Doe',
@@ -168,7 +152,6 @@ async function fakeApiGetUser() {
 
 async function fakeApiUpdateUser(updated) {
   console.log('Saving user:', updated);
-  // simulate delay
   return new Promise(resolve => setTimeout(resolve, 1000));
 }
 

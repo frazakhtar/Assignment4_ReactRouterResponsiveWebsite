@@ -6,7 +6,6 @@ const About = () => {
     <Container maxWidth="lg" sx={{ py: 8 }}>
       <Paper elevation={3} sx={{p:3}}>
       <Grid container spacing={6} alignItems="center">
-        {/* Left: Text */}
         <Grid item xs={12} md={6}>
           <Typography  sx={{ fontWeight: 600, mb: 3, fontSize:{xs:"1.25rem", sm:"1.5rem", md:"2rem",lg:"2.5rem"} }}>
             About Our Library
@@ -30,7 +29,6 @@ const About = () => {
           </Button>
         </Grid>
 
-        {/* Right: Image */}
         <Grid item xs={12} md={6}>
           <Box
             component="img"
